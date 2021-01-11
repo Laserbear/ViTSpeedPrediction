@@ -3,9 +3,21 @@ from vit_pytorch import ViT
 
 #image is 640 by 480
 
+device = 'cuda'
+gamma = 0.7
+
+# loss function
+criterion = nn.CrossEntropyLoss()
+# optimizer
+optimizer = optim.Adam(model.parameters(), lr=lr)
+# scheduler
+scheduler = StepLR(optimizer, step_size=1, gamma=gamma)
+
+
+
 v = ViT(
-    image_size = 256,
-    patch_size = 32,
+    image_size = 640, #max(height, width)
+    patch_size = 20, #common factor of both height and width
     num_classes = 1000,
     dim = 1024,
     depth = 6,
@@ -14,8 +26,3 @@ v = ViT(
     dropout = 0.1,
     emb_dropout = 0.1
 )
-
-img = torch.randn(1, 3, 256, 256)
-mask = torch.ones(1, 8, 8).bool() # optional mask, designating which patch to attend to
-
-preds = v(img, mask = mask)
