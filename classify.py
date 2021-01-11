@@ -13,7 +13,10 @@ optimizer = optim.Adam(model.parameters(), lr=lr)
 # scheduler
 scheduler = StepLR(optimizer, step_size=1, gamma=gamma)
 
+#how to modify to get scalar (speed) rather than classes?
 
+
+#todo add data loaders
 
 v = ViT(
     image_size = 640, #max(height, width)

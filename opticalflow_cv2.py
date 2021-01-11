@@ -23,7 +23,7 @@ while(1):
 
     cv2.imshow('frame2',rgb)
     k = cv2.waitKey(30) & 0xff
-    cv2.imwrite('data/'+str(frame_index)+'.png',rgb)
+    cv2.imwrite('data/training/'+str(frame_index)+'.png',rgb) #change directory based on training vs testing
     frame_index += 1
     prvs = next
 
