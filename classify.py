@@ -1,6 +1,8 @@
 import torch
 from vit_pytorch import ViT
 
+#image is 640 by 480
+
 v = ViT(
     image_size = 256,
     patch_size = 32,
