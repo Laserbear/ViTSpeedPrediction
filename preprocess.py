@@ -3,13 +3,13 @@
 
 import cv2
 import numpy as np
-cap = cv2.VideoCapture("data/train.mp4")
+cap = cv2.VideoCapture("train.mp4")
 
 ret, frame1 = cap.read()
 prvs = cv2.cvtColor(frame1,cv2.COLOR_BGR2GRAY)
 hsv = np.zeros_like(frame1)
 hsv[...,1] = 255
-
+frame_index = 0
 while(1):
     ret, frame2 = cap.read()
     next = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
@@ -23,11 +23,8 @@ while(1):
 
     cv2.imshow('frame2',rgb)
     k = cv2.waitKey(30) & 0xff
-    if k == 27:
-        break
-    elif k == ord('s'):
-        cv2.imwrite('opticalfb.png',frame2)
-        cv2.imwrite('opticalhsv.png',rgb)
+    cv2.imwrite('data/'+str(frame_index)+'.png',rgb)
+    frame_index += 1
     prvs = next
 
 cap.release()
